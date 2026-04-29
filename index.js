@@ -18,7 +18,7 @@ const {
 } = require('./src/handlers/searchHandler');
 const { showFavorites, clearFavorites, confirmClearFavorites } = require('./src/handlers/favoritesHandler');
 const { getTrailerLink } = require('./src/utils/helpers');
-
+const { handleMoodSearch, getMoodKeyboard } = require('./src/handlers/moodHandler');
 // 🎭 НАСТРОЕНИЯ
 const moodKeywords = {
     "Весёлое": ["Comedy"],

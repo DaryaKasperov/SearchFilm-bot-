@@ -1,4 +1,3 @@
-// src/keyboards/keyboards.js
 const { Keyboard, InlineKeyboard } = require('grammy');
 const { getKinopoiskLink } = require('../utils/helpers');
 
@@ -9,24 +8,23 @@ const mainKeyboard = new Keyboard()
     .text("👤 Поиск по режиссёру")
     .text("📅 Поиск по году")
     .row()
-    .text("🎭 По настроению")
     .text("🏆 Популярное")
-    .row()
     .text("🎬 Случайный фильм")
-    .text("⭐ Моё избранное")
     .row()
+    .text("⭐ Моё избранное")
     .text("🏠 Главное меню")
+    .row()
     .text("❓ Помощь")
     .resized()
-    .persistent();
+    .persistent()
+    .text ("🎭 По настроению");
 
-// Клавиатура для КРАТКОЙ информации (используется в messageHandler)
+// Клавиатура для краткой информации
 function getBriefMovieKeyboard(imdbID, title, year, isFav = false) {
     const keyboard = new InlineKeyboard();
     
     if (isFav) {
         keyboard.text("❤️ В избранном", "noop");
-        keyboard.text("❌ Удалить", `remove_${imdbID}`);
     } else {
         keyboard.text("🤍 В избранное", `add_${imdbID}`);
     }
@@ -41,7 +39,8 @@ function getBriefMovieKeyboard(imdbID, title, year, isFav = false) {
     return keyboard;
 }
 
-// Клавиатура для ПОЛНОЙ информации
+
+// Клавиатура для полной информации
 function getFullMovieKeyboard(imdbID, title, year, isFav = false) {
     const keyboard = new InlineKeyboard();
     
@@ -63,31 +62,7 @@ function getFullMovieKeyboard(imdbID, title, year, isFav = false) {
     return keyboard;
 }
 
-// Универсальная клавиатура (альтернатива)
-function getMovieKeyboard(imdbID, title, year, isFav = false) {
-    const keyboard = new InlineKeyboard();
-    
-    if (isFav) {
-        keyboard.text("❤️ В избранном", "noop");
-        keyboard.text("❌ Удалить", `remove_${imdbID}`);
-    } else {
-        keyboard.text("🤍 В избранное", `add_${imdbID}`);
-    }
-    
-    keyboard.row()
-        .text("📖 Подробнее", `details_${imdbID}`)
-        .text("🎥 Трейлер", `trailer_${imdbID}`);
-    
-    keyboard.row()
-        .text("🔍 Похожие", `similar_${imdbID}`)
-        .text("🏠 Меню", "back_to_start");
-    
-    keyboard.row()
-        .url("🎬 Кинопоиск", getKinopoiskLink(title, year));
-    
-    return keyboard;
-}
-
+// Клавиатура выбора режиссёра
 function getDirectorKeyboard(directors) {
     const keyboard = new InlineKeyboard();
     let count = 0;
@@ -104,6 +79,7 @@ function getDirectorKeyboard(directors) {
     return keyboard;
 }
 
+// Клавиатура выбора года
 function getYearKeyboard() {
     const currentYear = new Date().getFullYear();
     const keyboard = new InlineKeyboard();
@@ -115,10 +91,12 @@ function getYearKeyboard() {
         }
     }
     
+    keyboard.row().text("🎲 Случайный год", "random_year");
     keyboard.row().text("🏠 Главное меню", "back_to_start");
     return keyboard;
 }
 
+// Клавиатура подтверждения
 function getConfirmKeyboard(action) {
     return new InlineKeyboard()
         .text("✅ Да", `confirm_${action}`)
@@ -127,9 +105,8 @@ function getConfirmKeyboard(action) {
 
 module.exports = {
     mainKeyboard,
-    getBriefMovieKeyboard,  
-    getFullMovieKeyboard,  
-    getMovieKeyboard,      
+    getBriefMovieKeyboard,
+    getFullMovieKeyboard,
     getDirectorKeyboard,
     getYearKeyboard,
     getConfirmKeyboard

@@ -12,6 +12,25 @@ module.exports = {
     POPULAR_MOVIES: ['tt0111161', 'tt0068646', 'tt0468569', 'tt1375666', 'tt0133093'],
     RANDOM_SEARCH_QUERIES: ['love', 'action', 'comedy', 'drama', 'best', 'movie', 'film'],
     
+
+    MOOD_CONFIG: {
+        "Весёлое": {
+            emoji: "😄",
+            keywords: ["comedy", "animation", "family", "comédie", "комедия"],
+            description: "Комедии и лёгкие фильмы"
+        },
+        "Грустное": {
+            emoji: "😢",
+            keywords: ["drama", "romance", "biography", "drame", "драма"],
+            description: "Драмы и трогательные истории"
+        },
+        "Напряжённое": {
+            emoji: "😱",
+            keywords: ["thriller", "action", "crime", "thriller", "триллер"],
+            description: "Триллеры и боевики"
+        }
+    },
+
     GENRES_TRANSLATION: {
         'Action': 'Боевик', 'Adventure': 'Приключения', 'Animation': 'Мультфильм',
         'Biography': 'Биография', 'Comedy': 'Комедия', 'Crime': 'Криминал',
