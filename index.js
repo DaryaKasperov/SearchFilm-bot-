@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Bot, InlineKeyboard } = require('grammy');
 
-// Импорт модулей - ИСПРАВЛЕННЫЕ ПУТИ
+// Импорт модулей 
 const { startRateLimitCleaner, checkRateLimit } = require('./src/utils/rateLimit');
 const { movieCache, searchCache } = require('./src/utils/cache');
 const { mainKeyboard, getDirectorKeyboard, getYearKeyboard } = require('./src/keyboards/keyboards');
